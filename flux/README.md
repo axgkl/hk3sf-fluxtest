@@ -264,7 +264,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps/staging
+  path: ./flux/apps/staging
   prune: true
   wait: true
 ```
