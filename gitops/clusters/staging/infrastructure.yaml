@@ -11,7 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./flux/infrastructure/controllers
+  path: ./infrastructure/controllers
   prune: true
   wait: true
 ---
@@ -29,13 +29,13 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./flux/infrastructure/configs
+  path: ./infrastructure/configs
   prune: true
   patches:
     - patch: |
         - op: replace
           path: /spec/acme/server
-          value: https://acme-v02.api.letsencrypt.org/directory
+          value: https://acme-staging-v02.api.letsencrypt.org/directory
       target:
         kind: ClusterIssuer
         name: letsencrypt
