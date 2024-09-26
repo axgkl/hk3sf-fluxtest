@@ -11,33 +11,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/infrastructure/controllers
+  path: ./infrastructure/controllers
   prune: true
   wait: true
-  patches: 
-    - patch: |
-        - op: replace
-            path: /spec/values/controller/kind
-            value: DaemonSet
-        - op: replace
-            path: /spec/values/controller/service/externalIPs
-            value: []
-        - op: replace
-            path: /spec/values/controller/service/nodePorts/http
-            value: 30080
-        - op: replace
-            path: /spec/values/controller/service/nodePorts/https
-            value: 30443
-        - op: replace
-            path: /spec/values/controller/config/use-proxy-protocol
-            value: "true"
-        - op: replace
-            path: /spec/values/controller/config/use-forwarded-headers
-            value: "true"
-      target:
-        kind: HelmRelease
-        name: ingress-nginx
-
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -53,7 +29,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/infrastructure/configs
+  path: ./infrastructure/configs
   prune: true
   patches:
     - patch: |
@@ -63,4 +39,3 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
-
