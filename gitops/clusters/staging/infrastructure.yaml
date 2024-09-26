@@ -16,22 +16,22 @@ spec:
   wait: true
   patches:
     - patch: |
-        - op: replace
+        - op: add
           path: /spec/values/controller/kind
           value: DaemonSet
-        - op: replace
+        - op: add
           path: /spec/values/controller/service/externalIPs
           value: []
-        - op: replace
+        - op: add
           path: /spec/values/controller/service/nodePorts/http
           value: 30080
-        - op: replace
+        - op: add
           path: /spec/values/controller/service/nodePorts/https
           value: 30443
-        - op: replace
+        - op: add
           path: /spec/values/controller/config/use-proxy-protocol
           value: "true"
-        - op: replace
+        - op: add
           path: /spec/values/controller/config/use-forwarded-headers
           value: "true"
       target:
