@@ -14,8 +14,12 @@ spec:
   path: ./gitops/infrastructure/controllers
   prune: true
   wait: true
-  patches: 
-    - patch: |
+  patches:
+    - patch: |-
+        apiVersion: helm.toolkit.fluxcd.io/v2beta1
+        kind: HelmRelease
+        metadata:
+          name: ingress-nginx
         spec:
           values:
             controller:
@@ -57,4 +61,3 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
-
