@@ -14,6 +14,24 @@ spec:
   path: ./infrastructure/controllers
   prune: true
   wait: true
+  patches: 
+    - patch: |
+        spec:
+          values:
+            controller:
+              service:
+                nodePorts:
+                  http: 30080
+                  https: 30443
+                externalIPs: []
+              config:
+                use-proxy-protocol: "true"
+                use-forwarded-headers: "true"
+              kind: DaemonSet
+      target:
+        kind: HelmRelease
+        name: ingress-nginx
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -39,3 +57,4 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
+
